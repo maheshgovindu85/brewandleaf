@@ -1,0 +1,82 @@
+<div class="mgmt-container">
+  <div class="header">
+    <h2>Manage Products</h2>
+    <button class="btn-add" (click)="showModal = true">Add New Product</button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of products">
+          <td><img [src]="prod.image_url || 'assets/img/placeholder.png'" width="50"></td>
+          <td>{{prod.name}}</td>
+          <td>{{prod.category_name}}</td>
+          <td>{{prod.price | currency}}</td>
+          <td>{{prod.inventory_count}}</td>
+          <td>
+            <button class="btn-edit" (click)="editProduct(prod)"><i class="bi bi-pencil"></i></button>
+            <button class="btn-delete" (click)="deleteProduct(prod.id!)"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add/Edit Product Modal -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>{{isEditing ? 'Edit' : 'Add New'}} Product</h3>
+      <form (ngSubmit)="saveProduct()">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" [(ngModel)]="newProduct.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select [(ngModel)]="newProduct.category_id" name="category_id" required>
+              <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Sub-Category</label>
+            <select [(ngModel)]="newProduct.sub_category_id" name="sub_category_id">
+              <option [value]="null">None</option>
+              <option *ngFor="let sub of subCategories" [value]="sub.id">{{sub.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="newProduct.price" name="price" required>
+          </div>
+          <div class="form-group">
+            <label>Costing</label>
+            <input type="number" [(ngModel)]="newProduct.costing" name="costing" required>
+          </div>
+          <div class="form-group">
+            <label>Inventory Count</label>
+            <input type="number" [(ngModel)]="newProduct.inventory_count" name="inventory_count" required>
+          </div>
+          <div class="form-group">
+            <label>Image</label>
+            <input type="file" (change)="onFileSelected($event)">
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn-save">{{isEditing ? 'Update' : 'Save'}} Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

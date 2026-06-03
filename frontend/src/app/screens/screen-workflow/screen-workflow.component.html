@@ -1,0 +1,76 @@
+<div class="campaign-list-view" [class.is-blurred]="isWorkflowModalOpen">
+  <div class="toolbar-row">
+    <div class="toolbar-input select-display">
+      <span>All</span>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="toolbar-input search-display">
+      <i class="bi bi-search"></i>
+      <span>Search</span>
+    </div>
+    <button class="btn btn-primary ms-auto px-4" type="button" (click)="openModal.emit()">
+      Select Mode
+    </button>
+  </div>
+
+  <div class="empty-state-wrap">
+    <img src="../../../assets/img/compaign.svg" alt="">
+  </div>
+</div>
+
+@if (isWorkflowModalOpen) {
+  <div class="modal-layer">
+    <div class="workflow-modal">
+      <div class="modal-header-row">
+        <div>
+          <h2>Select Workflow Mode</h2>
+          <p>Choose how you want your campaign to behave</p>
+        </div>
+        <button class="close-button" type="button" (click)="closeModal.emit()">
+          <img src="../../../assets/icons/cancel-circle.svg" alt="">
+        </button>
+      </div>
+
+      <div class="workflow-options">
+        @for (mode of workflowModes; track mode.id) {
+          <button
+            class="workflow-option"
+            type="button"
+            [class.selected]="selectedWorkflowModeId === mode.id"
+            (click)="chooseMode.emit(mode.id)"
+          >
+            <div class="option-radio">
+              <span></span>
+            </div>
+            <div class="workflow-copy">
+              <div class="workflow-title-row">
+                <strong>{{ mode.title }}</strong>
+                @if (mode.badge) {
+                  <span class="workflow-badge">{{ mode.badge }}</span>
+                }
+              </div>
+              <p>{{ mode.description }}</p>
+              <div class="workflow-bullets">
+                @for (bullet of mode.bullets; track bullet) {
+                  <span>{{ bullet }}</span>
+                }
+              </div>
+            </div>
+            <div class="workflow-graphic">
+              <img [src]="mode.image" alt="" width="100%">
+            </div>
+          </button>
+        }
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary px-4" type="button" (click)="closeModal.emit()">
+          Close
+        </button>
+        <button class="btn btn-primary px-4" type="button" (click)="next.emit()">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+}

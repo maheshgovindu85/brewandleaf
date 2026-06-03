@@ -1,0 +1,84 @@
+<aside class="app-sidebar" [class.collapsed]="!isOpen">
+  <div>
+    <div class="brand-row">
+      <div class="brand-mark">
+       <img src="./../assets/icons/brandLogo.svg" alt="Brand Logo">
+      </div>
+      @if (isOpen) {
+        <div>
+          <div class="brand-title">Frontend Task</div>
+        </div>
+      }
+      <button class="icon-chip ms-auto" type="button" aria-label="Collapse sidebar" (click)="onToggleSidebar()">
+         <img [src]="isOpen ? './../assets/icons/panel-right-close.svg' : './../assets/icons/panel-right-close.svg'" alt="close sidebar">
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      @for (item of navItems; track item.label) {
+        <button
+          class="sidebar-link"
+          type="button"
+          [class.active]="item.active"
+          [title]="item.label"
+        >
+          <i [class]="item.icon"></i>
+          @if (isOpen) {
+            <span>{{ item.label }}</span>
+          }
+        </button>
+      }
+    </nav>
+  </div>
+
+  @if (isOpen) {
+    <div>
+      <div class="sidebar-user-card">
+        <div class="user-row">
+          <div class="avatar">
+            <span>JD</span>
+            <span class="avatar-status"></span>
+          </div>
+          <div>
+            <div class="user-name">John Doe</div>
+            <div class="user-role">Admin</div>
+          </div>
+          <button class="icon-chip logout ms-auto" type="button" aria-label="Logout" (click)="onLogout()">
+           <img src="./../assets/icons/logout.svg" alt="Logout">
+          </button>
+        </div>
+        <div class="user-meta-label">Email</div>
+        <div class="user-email">johndoe&#64;gmail.com</div>
+        
+      </div>
+      <div class="theme-switcher">
+          <button 
+            class="theme-pill" 
+            [class.active]="theme === 'light'" 
+            type="button"
+            (click)="$event.stopPropagation(); setTheme('light')"
+          >
+            <i class="bi bi-brightness-high"></i>
+            <span>Light</span>
+          </button>
+          <button 
+            class="theme-pill" 
+            [class.active]="theme === 'dark'" 
+            type="button"
+            (click)="$event.stopPropagation(); setTheme('dark')"
+          >
+            <i class="bi bi-moon"></i>
+            <span>Dark</span>
+          </button>
+        </div>
+    </div>
+  } @else {
+    <!-- Minimal user icon when collapsed -->
+    <div class="sidebar-user-mini">
+      <div class="avatar">
+        <span>JD</span>
+        <span class="avatar-status"></span>
+      </div>
+    </div>
+  }
+</aside>

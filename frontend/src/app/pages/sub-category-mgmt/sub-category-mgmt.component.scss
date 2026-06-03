@@ -1,0 +1,21 @@
+@import '../product-mgmt/product-mgmt.component.scss';
+
+.btn-edit {
+  background: #ffc107;
+  color: black;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+textarea, select {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+textarea {
+  min-height: 100px;
+}

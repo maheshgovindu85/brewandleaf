@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Fors Trial';
+  src: url('/assets/fonts/TT Fors Trial Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Font families */
+  --font-base: 'Montserrat', sans-serif;
+  --font-heading: 'TT Fors Trial', sans-serif;
+  --font-logo: 'TT Fors Trial', sans-serif;
+
+  /* Color palette - Brew and Leaf (Brown and Cream) */
+  --color-white: #ffffff;
+  --color-bg: #FDF5E6; /* Cream */
+  --color-surface: #ffffff;
+  --color-surface-soft: #5C4033; /* Soft Brown */
+  --color-border: #D2B48C; /* Tan */
+  --color-border-strong: #8B4513; /* Saddle Brown */
+  --color-primary: #4B3621; /* Dark Brown */
+  --color-primary-dark: #3D2B1F;
+  --color-primary-soft: rgba(75, 54, 33, 0.12);
+  --color-text-main: #3D2B1F;
+  --color-text-soft: #5C4033;
+  --color-success: #00704A; /* Starbucks Green for success/accent */
+  --shadow-soft: 0 4px 12px rgba(75, 54, 33, 0.1);
+  --shadow-card: 0 8px 24px rgba(75, 54, 33, 0.15);
+  --sidebar-bg: #F5F5DC; /* Beige */
+  --card-bg: #ffffff;
+
+  /* Compatibility aliases for existing styles */
+  --app-bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --surface-soft: var(--color-surface-soft);
+  --border-color: var(--color-border);
+  --border-strong: var(--color-border-strong);
+  --primary: var(--color-primary);
+  --primary-dark: var(--color-primary-dark);
+  --primary-soft: var(--color-primary-soft);
+  --text-main: var(--color-text-main);
+  --text-strong: var(--color-surface-soft);
+  --success: var(--color-success);
+}
+
+body,
+button,
+input,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+select {
+  font-family: var(--font-base);
+}
+
+
+.brand-title,
+.logo {
+  font-family: var(--font-heading);
+}

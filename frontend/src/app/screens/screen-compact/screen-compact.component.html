@@ -1,0 +1,13 @@
+<div class="builder-view compact">
+  @if (selectedImportId === 'upload') {
+    <app-upload-content></app-upload-content>
+  } @else if (selectedImportId === 'linkedin') {
+    <app-linkedin-content></app-linkedin-content>
+  }
+
+  <div class="builder-footer">
+    <button class="btn btn-primary px-4" type="button" (click)="next.emit()">
+      Next
+    </button>
+  </div>
+</div>

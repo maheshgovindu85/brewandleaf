@@ -1,0 +1,94 @@
+<div class="billing-container">
+  <div class="selection-area">
+    <h3>Select Items</h3>
+    <div class="product-search">
+      <input type="text" placeholder="Search products...">
+    </div>
+    <div class="products-grid">
+      <div class="product-item" *ngFor="let prod of products" (click)="addToCart(prod)">
+        <img [src]="prod.image_url || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=60'">
+        <div class="info">
+          <p class="name">{{prod.name}}</p>
+          <p class="price">{{prod.price | currency}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-area">
+    <h3>Current Order</h3>
+    <div class="customer-info">
+      <input type="text" [(ngModel)]="customerName" placeholder="Customer Name">
+      <input type="email" [(ngModel)]="customerEmail" placeholder="Customer Email">
+    </div>
+
+    <div class="cart-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart; let i = index">
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.total_price | currency}}</td>
+            <td><button (click)="removeFromCart(i)">&times;</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cart-summary">
+      <div class="row"><span>Subtotal:</span> <span>{{subtotal | currency}}</span></div>
+      <div class="row">
+        <span>Discount:</span> 
+        <input type="number" [(ngModel)]="discount" style="width: 60px">
+      </div>
+      <div class="row total"><span>Total:</span> <span>{{total | currency}}</span></div>
+      <button class="btn-generate" [disabled]="cart.length === 0" (click)="generateInvoice()">Generate & Print Invoice</button>
+    </div>
+  </div>
+
+  <!-- Hidden Invoice Template for PDF -->
+  <div id="invoice-content" style="position: absolute; left: -9999px; width: 800px; padding: 40px; background: white; color: black;">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h1 style="color: #4B3621; margin: 0;">Brew & Leaf</h1>
+      <p>123 Coffee Lane, Brew City | +1 234 567 890</p>
+      <hr>
+      <h2>INVOICE</h2>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <p><strong>Customer:</strong> {{customerName || 'Walk-in Customer'}}</p>
+      <p><strong>Date:</strong> {{today | date:'medium'}}</p>
+    </div>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+      <thead>
+        <tr style="border-bottom: 2px solid #4B3621;">
+          <th style="text-align: left; padding: 10px;">Item</th>
+          <th style="text-align: center; padding: 10px;">Qty</th>
+          <th style="text-align: right; padding: 10px;">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart" style="border-bottom: 1px solid #eee;">
+          <td style="padding: 10px;">{{item.name}}</td>
+          <td style="text-align: center; padding: 10px;">{{item.quantity}}</td>
+          <td style="text-align: right; padding: 10px;">{{item.total_price | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="text-align: right; font-size: 1.2rem;">
+      <p>Subtotal: {{subtotal | currency}}</p>
+      <p>Discount: -{{discount | currency}}</p>
+      <p style="font-weight: bold; color: #4B3621; font-size: 1.5rem;">Total: {{total | currency}}</p>
+    </div>
+    <div style="margin-top: 50px; text-align: center; font-style: italic;">
+      <p>Thank you for visiting Brew & Leaf!</p>
+    </div>
+  </div>
+</div>

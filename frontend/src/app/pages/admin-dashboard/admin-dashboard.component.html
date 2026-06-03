@@ -1,0 +1,20 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>Brew & Leaf</h3>
+      <p>Admin Panel</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard" routerLinkActive="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a routerLink="/admin/categories" routerLinkActive="active"><i class="bi bi-tags"></i> Categories</a>
+      <a routerLink="/admin/sub-categories" routerLinkActive="active"><i class="bi bi-tag"></i> Sub-Categories</a>
+      <a routerLink="/admin/products" routerLinkActive="active"><i class="bi bi-box-seam"></i> Products</a>
+      <a routerLink="/admin/billing" routerLinkActive="active"><i class="bi bi-receipt"></i> Billing</a>
+      <a routerLink="/" class="logout"><i class="bi bi-box-arrow-left"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <main class="admin-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

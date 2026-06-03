@@ -1,0 +1,43 @@
+  <div class="flow-section">
+    <div class="timeline-rail">
+      <span class="timeline-dot" [class.done]="firstStepDone"></span>
+    </div>
+    <div class="section-body">
+      <div class="section-header">
+        <div class="section-title-row">
+          <span>Choose Import Method</span>
+          <small>Step 1 of 2</small>
+        </div>
+        <i class="bi bi-chevron-up"></i>
+      </div>
+
+      <div class="import-grid">
+        @for (option of importOptions; track option.id) {
+          <button
+            class="import-card"
+            type="button"
+            [class.selected]="selectedImportId === option.id"
+            (click)="selectImport.emit(option.id)"
+          >
+            <div class="import-card-top">
+              @if (option.icon.includes('/')) {
+                <img class="import-icon" [src]="option.icon" [alt]="option.title" />
+              } @else {
+                <i [class]="option.icon"></i>
+              }
+              @if (selectedImportId === option.id) {
+                <span class="selected-chip">
+                  <i class="bi bi-check-lg"></i>
+                </span>
+              }
+            </div>
+            <h3>{{ option.title }}</h3>
+            <p>{{ option.description }}</p>
+            @if (option.footer) {
+              <div class="import-footer">{{ option.footer }}</div>
+            }
+          </button>
+        }
+      </div>
+    </div>
+  </div>

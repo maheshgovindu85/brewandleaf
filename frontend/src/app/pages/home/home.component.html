@@ -1,0 +1,72 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">Brew & Leaf</div>
+      <ul class="nav-links">
+        <li><a routerLink="/">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a routerLink="/login" class="btn-admin">Admin</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Experience the Perfect Brew</h1>
+      <p>From rich coffees to refreshing milkshakes, find your flavor at Brew & Leaf.</p>
+      <a href="#menu" class="btn-primary">View Menu</a>
+    </div>
+  </header>
+
+  <!-- Categories Section -->
+  <section class="categories" id="menu">
+    <h2>Our Specialties</h2>
+    <div class="category-grid">
+      <div class="category-card" *ngFor="let cat of categories">
+        <div class="cat-icon">☕</div>
+        <h3>{{cat.name}}</h3>
+        <p>{{cat.description}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="products">
+    <h2>Popular Choices</h2>
+    <div class="product-grid">
+      <div class="product-card" *ngFor="let prod of featuredProducts">
+        <div class="product-image">
+          <img [src]="prod.image_url || 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=60'" [alt]="prod.name">
+        </div>
+        <div class="product-info">
+          <h3>{{prod.name}}</h3>
+          <p class="price">{{prod.price | currency}}</p>
+          <button class="btn-add">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2>About Brew & Leaf</h2>
+      <p>We are passionate about bringing you the finest coffee and snacks. Our beans are ethically sourced and roasted to perfection. Whether you need a morning pick-me-up or a place to relax, Brew & Leaf is your home away from home.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Get in Touch</h2>
+    <div class="contact-details">
+      <p><i class="bi bi-geo-alt"></i> 123 Coffee Lane, Brew City</p>
+      <p><i class="bi bi-telephone"></i> +1 234 567 890</p>
+      <p><i class="bi bi-envelope"></i> hello&#64;brewandleaf.com</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Brew & Leaf. All rights reserved.</p>
+  </footer>
+</div>
